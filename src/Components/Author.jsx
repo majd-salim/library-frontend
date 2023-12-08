@@ -8,7 +8,7 @@ const Author = ({ author, fetchauthor }) => {
   const [editing, setEditing] = useState(false);
  
   const handleDelete = async () => {
-    await fetch(`http://ec2-3-138-190-49.us-east-2.compute.amazonaws.com:3000/books${author.name}`, {
+    await fetch(`https://dc6hj63wm0hfv.cloudfront.net/books${author.name}`, {
       method: "DELETE",
     }).then((res, err) => {
       console.log(res, err);
@@ -16,7 +16,7 @@ const Author = ({ author, fetchauthor }) => {
     fetchAuthor();
   };
   const handleUpdate = async () => {
-    fetch(`http://ec2-3-138-190-49.us-east-2.compute.amazonaws.com:3000/books${author.name}`, {
+    fetch(`https://dc6hj63wm0hfv.cloudfront.net/books${author.name}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

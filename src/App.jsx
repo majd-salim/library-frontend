@@ -11,7 +11,7 @@ function App() {
   }, []);
  
   const fetchBooks = async () => {
-    const response = await fetch("http://ec2-3-138-190-49.us-east-2.compute.amazonaws.com:3000/books");
+    const response = await fetch("https://dc6hj63wm0hfv.cloudfront.net/books");
     const data = await response.json();
     console.log(data, "response");
     setBooks(data);
