@@ -1,0 +1,49 @@
+import React, { useState, useEffect } from "react";
+import BooksList from "./Components/BooksList";
+//import AddBookForm from "./Components/AddBookForm";
+ 
+function App() {
+  const [toggleBooks, setToggleBooks] = useState(true);
+  const [books, setBooks] = useState([]);
+ 
+  useEffect(() => {
+    fetchBooks();
+  }, []);
+ 
+  const fetchBooks = async () => {
+    const response = await fetch("http://ec2-3-138-190-49.us-east-2.compute.amazonaws.com:3000/books");
+    const data = await response.json();
+    console.log(data, "response");
+    setBooks(data);
+  };
+ 
+  return (
+    <div class="App">
+      <h1>Book Library</h1>
+      <button
+        onClick={() => {
+          setToggleBooks(true);
+        }}
+      >
+        Books
+      </button>
+      <button
+        onClick={() => {
+          setToggleBooks(false);
+        }}
+      >
+        Authors
+      </button>
+      {toggleBooks ? (
+        <div>
+         {/* <AddBookForm fetchBooks={fetchBooks} />*/}
+          <BooksList books={books} fetchBooks={fetchBooks} />
+        </div>
+      ) : (
+        <p>Authors List</p>
+      )}
+    </div>
+  );
+}
+ 
+export default App;
